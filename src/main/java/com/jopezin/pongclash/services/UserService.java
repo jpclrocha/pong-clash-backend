@@ -2,8 +2,11 @@ package com.jopezin.pongclash.services;
 
 import com.jopezin.pongclash.domain.user.User;
 import com.jopezin.pongclash.repositories.UserRepository;
+import com.jopezin.pongclash.services.exceptions.DatabaseException;
 import com.jopezin.pongclash.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +38,10 @@ public class UserService {
     public void delete(UUID id){
         try{
             userRepository.deleteById(id);
-        }catch (Exception e){
+        }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException(id.toString());
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
         }
     }
 }
