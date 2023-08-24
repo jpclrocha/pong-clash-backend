@@ -1,5 +1,7 @@
 package com.jopezin.pongclash.domain.user;
 
+import com.jopezin.pongclash.domain.team.Team;
+import com.jopezin.pongclash.dto.TeamDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,14 +24,17 @@ public class User implements Serializable {
     private String lastname;
     private String email;
     private String password;
-//    private Team team;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 //    private List<Tournament> tournamentsPlayed;
 
-//    public User(UUID id, String firstname, String lastname, String email, String password){
-//        setId(id);
-//        setFirstname(firstname);
-//        setLastname(lastname);
-//        setEmail(email);
-//        setPassword(password);
-//    }
+    public User(UUID id, String firstname, String lastname, String email, String password){
+        setId(id);
+        setFirstname(firstname);
+        setLastname(lastname);
+        setEmail(email);
+        setPassword(password);
+    }
 }

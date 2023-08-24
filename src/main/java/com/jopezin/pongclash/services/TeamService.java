@@ -3,8 +3,8 @@ package com.jopezin.pongclash.services;
 import com.jopezin.pongclash.domain.team.Team;
 import com.jopezin.pongclash.domain.user.User;
 import com.jopezin.pongclash.dto.TeamDTO;
+import com.jopezin.pongclash.dto.UserDTO;
 import com.jopezin.pongclash.repositories.TeamRepository;
-import com.jopezin.pongclash.repositories.UserRepository;
 import com.jopezin.pongclash.services.exceptions.DatabaseException;
 import com.jopezin.pongclash.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,38 +13,35 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+public class TeamService {
 
     @Autowired
-    private TeamService teamService;
+    private TeamRepository repository;
 
-    public List<User> findAll(){
-        return userRepository.findAll();
+    public List<Team> findAll(){
+        return repository.findAll();
     }
 
-    public User findById(UUID id){
-        Optional<User> user = userRepository.findById(id);
-        return user.orElseThrow(() -> new ResourceNotFoundException(id.toString()));
+    public Team findById(UUID id){
+        Optional<Team> team = repository.findById(id);
+        return team.orElseThrow(() -> new ResourceNotFoundException(id.toString()));
     }
 
-    public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+    public Team findByName(String name){
+        return repository.findByName(name);
     }
 
-    public User insert(User user){
-        return userRepository.save(user);
+    public Team insert(Team team){
+        return repository.save(team);
     }
 
     public void delete(UUID id){
-        try{
-            userRepository.deleteById(id);
+        try {
+            repository.deleteById(id);
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException(id.toString());
         }catch (DataIntegrityViolationException e){
@@ -52,12 +49,15 @@ public class UserService {
         }
     }
 
-    public User insertTeam(UUID userId, Team team){
-        User user = userRepository
-                .findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(userId.toString()));
-        user.setTeam(team);
+    public Team fromDTO(TeamDTO teamDTO) {
+        Optional<Team> team = repository.findById(teamDTO.id());
+        return team.orElseThrow(() -> new ResourceNotFoundException(teamDTO.id().toString()));
+    }
 
-        return userRepository.save(user);
+    public List<User> getTeamMembers(UUID id) {
+        Optional<Team> team = repository.findById(id);
+        return team
+                .orElseThrow(() -> new ResourceNotFoundException(id.toString()))
+                .getMembers();
     }
 }

@@ -1,7 +1,11 @@
 package com.jopezin.pongclash.controllers;
 
+import com.jopezin.pongclash.domain.team.Team;
 import com.jopezin.pongclash.domain.user.User;
 import com.jopezin.pongclash.dto.RegisterDTO;
+import com.jopezin.pongclash.dto.TeamDTO;
+import com.jopezin.pongclash.repositories.UserRepository;
+import com.jopezin.pongclash.services.TeamService;
 import com.jopezin.pongclash.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,9 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     private UserService service;
+
+    @Autowired
+    private TeamService teamService;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
@@ -45,5 +52,14 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}/team")
+    public ResponseEntity<User> putUserTeam(@PathVariable UUID id,
+                                            @RequestBody TeamDTO teamDTO){
+        Team team = teamService.fromDTO(teamDTO);
+        User user = service.insertTeam(id, team);
+        return ResponseEntity.ok().body(user);
+
     }
 }
