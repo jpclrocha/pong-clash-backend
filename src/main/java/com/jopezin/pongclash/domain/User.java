@@ -1,11 +1,10 @@
-package com.jopezin.pongclash.domain.user;
+package com.jopezin.pongclash.domain;
 
-import com.jopezin.pongclash.domain.team.Team;
-import com.jopezin.pongclash.dto.TeamDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +27,9 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
-//    private List<Tournament> tournamentsPlayed;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserTournaments> tournamentsPlayed = new ArrayList<>();
 
     public User(UUID id, String firstname, String lastname, String email, String password){
         setId(id);

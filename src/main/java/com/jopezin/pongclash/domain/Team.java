@@ -1,8 +1,6 @@
-package com.jopezin.pongclash.domain.team;
+package com.jopezin.pongclash.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jopezin.pongclash.domain.user.User;
-import com.jopezin.pongclash.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,7 @@
 package com.jopezin.pongclash.config;
 
-import com.jopezin.pongclash.domain.team.Team;
-import com.jopezin.pongclash.domain.user.User;
-import com.jopezin.pongclash.dto.UserDTO;
+import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.User;
 import com.jopezin.pongclash.repositories.TeamRepository;
 import com.jopezin.pongclash.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

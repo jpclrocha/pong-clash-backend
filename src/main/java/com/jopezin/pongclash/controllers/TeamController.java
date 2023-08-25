@@ -1,10 +1,9 @@
 package com.jopezin.pongclash.controllers;
 
-import com.jopezin.pongclash.domain.team.Team;
-import com.jopezin.pongclash.domain.user.User;
+import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.User;
 import com.jopezin.pongclash.dto.CreateTeamDTO;
 import com.jopezin.pongclash.dto.UserDTO;
-import com.jopezin.pongclash.repositories.TeamRepository;
 import com.jopezin.pongclash.services.TeamService;
 import com.jopezin.pongclash.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

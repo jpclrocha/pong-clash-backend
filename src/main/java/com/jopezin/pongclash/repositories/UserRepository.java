@@ -1,9 +1,8 @@
 package com.jopezin.pongclash.repositories;
 
-import com.jopezin.pongclash.domain.user.User;
+import com.jopezin.pongclash.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {

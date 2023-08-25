@@ -1,6 +1,6 @@
 package com.jopezin.pongclash.repositories;
 
-import com.jopezin.pongclash.domain.team.Team;
+import com.jopezin.pongclash.domain.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

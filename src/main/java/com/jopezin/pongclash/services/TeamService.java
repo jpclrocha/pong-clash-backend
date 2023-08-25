@@ -1,9 +1,8 @@
 package com.jopezin.pongclash.services;
 
-import com.jopezin.pongclash.domain.team.Team;
-import com.jopezin.pongclash.domain.user.User;
+import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.User;
 import com.jopezin.pongclash.dto.TeamDTO;
-import com.jopezin.pongclash.dto.UserDTO;
 import com.jopezin.pongclash.repositories.TeamRepository;
 import com.jopezin.pongclash.services.exceptions.DatabaseException;
 import com.jopezin.pongclash.services.exceptions.ResourceNotFoundException;

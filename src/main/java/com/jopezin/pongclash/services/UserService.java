@@ -1,9 +1,7 @@
 package com.jopezin.pongclash.services;
 
-import com.jopezin.pongclash.domain.team.Team;
-import com.jopezin.pongclash.domain.user.User;
-import com.jopezin.pongclash.dto.TeamDTO;
-import com.jopezin.pongclash.repositories.TeamRepository;
+import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.User;
 import com.jopezin.pongclash.repositories.UserRepository;
 import com.jopezin.pongclash.services.exceptions.DatabaseException;
 import com.jopezin.pongclash.services.exceptions.ResourceNotFoundException;
@@ -13,7 +11,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
