@@ -1,7 +1,9 @@
 package com.jopezin.pongclash.services;
 
 import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.Tournament;
 import com.jopezin.pongclash.domain.User;
+import com.jopezin.pongclash.domain.UserTournaments;
 import com.jopezin.pongclash.repositories.UserRepository;
 import com.jopezin.pongclash.services.exceptions.DatabaseException;
 import com.jopezin.pongclash.services.exceptions.ResourceNotFoundException;
@@ -50,11 +52,15 @@ public class UserService {
     }
 
     public User insertTeam(UUID userId, Team team){
-        User user = userRepository
-                .findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(userId.toString()));
+        User user = findById(userId);
         user.setTeam(team);
 
         return userRepository.save(user);
+    }
+
+    public List<UserTournaments> getUserPlayedTournaments(UUID id) {
+        User user = findById(id);
+
+        return user.getTournamentsPlayed();
     }
 }

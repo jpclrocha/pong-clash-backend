@@ -1,5 +1,6 @@
 package com.jopezin.pongclash.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jopezin.pongclash.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,8 +24,15 @@ public class Tournament implements Serializable {
 
     private String name;
 
-    private UUID team_id;
+    private UUID teamId;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "id.tournament")
+    @JsonIgnore
     private List<UserTournaments> players = new ArrayList<>();
+
+    public Tournament(UUID id, String name, UUID teamId){
+        setId(id);
+        setName(name);
+        setTeamId(teamId);
+    }
 }

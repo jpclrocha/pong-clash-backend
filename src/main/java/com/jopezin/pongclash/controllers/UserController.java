@@ -1,7 +1,9 @@
 package com.jopezin.pongclash.controllers;
 
 import com.jopezin.pongclash.domain.Team;
+import com.jopezin.pongclash.domain.Tournament;
 import com.jopezin.pongclash.domain.User;
+import com.jopezin.pongclash.domain.UserTournaments;
 import com.jopezin.pongclash.dto.RegisterDTO;
 import com.jopezin.pongclash.dto.TeamDTO;
 import com.jopezin.pongclash.services.TeamService;
@@ -60,5 +62,11 @@ public class UserController {
         User user = service.insertTeam(id, team);
         return ResponseEntity.ok().body(user);
 
+    }
+
+    @GetMapping(value = "/{id}/tournaments")
+    public ResponseEntity<List<UserTournaments>> getUserTournaments(@PathVariable UUID id){
+        List<UserTournaments> list = service.getUserPlayedTournaments(id);
+        return ResponseEntity.ok().body(list);
     }
 }

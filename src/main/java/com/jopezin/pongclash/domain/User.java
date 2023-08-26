@@ -28,7 +28,7 @@ public class User implements Serializable {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "id.user")
     private List<UserTournaments> tournamentsPlayed = new ArrayList<>();
 
     public User(UUID id, String firstname, String lastname, String email, String password){
