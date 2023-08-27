@@ -4,10 +4,7 @@ package com.jopezin.pongclash.domain;
 import com.jopezin.pongclash.domain.enums.Category;
 import com.jopezin.pongclash.domain.pk.UserTournamentsPK;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -17,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public class UserTournaments implements Serializable {
 
     @EmbeddedId

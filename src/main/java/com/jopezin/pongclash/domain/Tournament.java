@@ -3,10 +3,7 @@ package com.jopezin.pongclash.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jopezin.pongclash.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -17,6 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @Setter
 @Getter
+@EqualsAndHashCode(of = "id")
 public class Tournament implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,6 +27,9 @@ public class Tournament implements Serializable {
     @OneToMany(mappedBy = "id.tournament")
     @JsonIgnore
     private List<UserTournaments> players = new ArrayList<>();
+
+    @OneToMany(mappedBy = "tournament")
+    private List<Match> matches = new ArrayList<>();
 
     public Tournament(UUID id, String name, UUID teamId){
         setId(id);
